@@ -1,13 +1,14 @@
-import ErrorRepository from '../map';
+export default class ErrorRepository {
+  constructor() {
+    this.map = new Map([
+      ['404', 'Bad Request'],
+      ['505', 'Server Error'],
+    ]);
+  }
 
-test('test error', () => {
-  const err = new ErrorRepository();
-
-  expect(err.translate('404')).toBe('Bad Request');
-});
-
-test('test error', () => {
-  const err = new ErrorRepository();
-
-  expect(err.translate('400')).toBe('Unknown error');
-});
+  translate(code) {
+    if (this.map.get(code)) {
+      return this.map.get(code);
+    }
+    return 'Unknown error';
+  }

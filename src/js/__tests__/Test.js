@@ -1,13 +1,13 @@
-import ErrorRepository from '../ErrorRepository';
+import ErrorRepository from '../map';
 
- test('check translation', () => {
-     const errRep = new ErrorRepository();
-     errRep.errRepSet(20, 'character name should include at least 6 letters');
-     expect(errRep.translate(20)).toBe('character name should include at least 6 letters');
- });
+test('test error', () => {
+  const err = new ErrorRepository();
 
- test('unknown code translation', () => {
-    const errRep = new ErrorRepository();
-    errRep.errRepSet(20, 'character name should include at least 6 letters');
-    expect(errRep.translate(50)).toBe('Unknown error');
- });
+  expect(err.translate('404')).toBe('Bad Request');
+});
+
+test('test error', () => {
+  const err = new ErrorRepository();
+
+  expect(err.translate('401')).toBe('Unknown error');
+});
